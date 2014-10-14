@@ -1,1 +1,1 @@
-Arreglar el Resize para que funcione el mismo codigo en c# tanto para forms que para WPF
+Arreglar el Resize para que funcione el mismo codigo en c# tanto para forms que para WPF.
