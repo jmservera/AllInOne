@@ -1,0 +1,109 @@
+#define Uniform_HasDiffuseMap
+
+
+struct _Light
+{
+	float3 Position;	// Word Space
+	float4 Color;
+	float4 Range;
+	float RcpEnd;	// 1/Range
+};
+
+Texture2D txDiffuse : register( t0 );
+SamplerState samDiffuse : register( s0 );
+
+
+cbuffer cbChangesEveryFrame : register( b0 )
+{
+    matrix World;
+	matrix View;
+	matrix Projection;
+    float4 DiffuseColor;
+};
+
+float4 ApplyLight(_Light light,float3 normal,float3 position,int attenuationMode)
+{
+	float attenuation=1.0f;
+	
+	float3 lightDir=light.Position-position;
+	
+	float lightLength=length(lightDir);
+	
+	if(attenuation==0)
+	{
+		// None
+	}
+	if(attenuation==1)	// Inverse
+	{
+		//attenuation -= saturate(lightLength*light.RcpEnd);
+		attenuation -= saturate(lightLength/light.Range.x);
+	}
+	
+	if(attenuation==2)	// DualRadius
+	{
+		//attenuation -= smoothstep(light.Start,light.End,light.RcpEnd_Minus_Start,lightLength);
+	}
+	
+	return saturate( dot( lightDir,normal) * light.Color * attenuation );
+};
+
+struct VS_OUTPUT
+{
+    float4 Pos : SV_POSITION;
+	float4 Color0: COLOR0;
+	float3 Normal_WorldSpace: NORMAL;
+    float2 TexDiffuse : TEXCOORD0;
+	float3 Position_WorldSpace: TEXCOORD1;
+};
+
+
+//--------------------------------------------------------------------------------------
+// Vertex Shader
+//--------------------------------------------------------------------------------------
+VS_OUTPUT VS(float4 Pos0 : POSITION0,float3 Normal0 : NORMAL0,float2 TexDiffuse0 : TEXCOORD0)
+{
+    VS_OUTPUT output = (VS_OUTPUT)0;
+	
+	//matrix WorldViewProjection = mul(mul(World, View), Projection);
+
+    output.Pos = mul( Pos0, World );
+    output.Pos = mul( output.Pos, View );
+    output.Pos = mul( output.Pos, Projection );
+	output.Position_WorldSpace = mul( Pos0, World ).xyz;
+	
+	output.Normal_WorldSpace = mul(Normal0, (float3x3)World).xyz;
+	output.TexDiffuse = TexDiffuse0;
+	
+	
+
+
+    return output;
+}
+
+
+//--------------------------------------------------------------------------------------
+// Pixel Shader
+//--------------------------------------------------------------------------------------
+float4 PS( VS_OUTPUT input) : SV_Target
+{
+	float4 finalColor;
+
+	float4 diffuseColor = DiffuseColor;
+	
+	float3 position_WorldSpace=input.Position_WorldSpace;
+
+	#ifdef Uniform_HasDiffuseVertexColor	
+		diffuseColor *= input.Color0;
+	#endif
+	
+	#ifdef Uniform_HasDiffuseMap
+		diffuseColor*=txDiffuse.Sample( samDiffuse, input.TexDiffuse );	
+	#endif
+	
+
+
+	finalColor=diffuseColor;
+	
+	return finalColor;
+}
+

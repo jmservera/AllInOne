@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de código fuente">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Texture">
+      <UniqueIdentifier>{01883377-bebe-4c2c-a86d-fb5c9db34546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Texture">
+      <UniqueIdentifier>{361edd28-9e06-4741-b200-5b37cbdb167e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Tools">
+      <UniqueIdentifier>{a7d77722-079d-4e91-8393-0fd92e1f4659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Tools">
+      <UniqueIdentifier>{e83f2f95-434c-40f9-ab84-976ee550b300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Input">
+      <UniqueIdentifier>{2f726abc-0306-4d32-a7fb-66da624ab2d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Input">
+      <UniqueIdentifier>{b6a48bef-6b82-4f76-b36d-b30f2d45d3e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Common">
+      <UniqueIdentifier>{97edb7d4-869f-4243-bf00-115300bf5494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Common">
+      <UniqueIdentifier>{dbaa86ec-8c14-4ed0-a14e-49d107c4d78d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stdafx.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AllHeaders.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDevice.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayout.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Archivos de encabezado\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Archivos de encabezado\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="FastStrCat.h">
+      <Filter>Archivos de encabezado\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthStencil.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Archivos de encabezado\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceStates.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Archivos de encabezado\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Archivos de encabezado\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendDescription.h">
+      <Filter>Archivos de encabezado\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthStencilDescription.h">
+      <Filter>Archivos de encabezado\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterizerDescription.h">
+      <Filter>Archivos de encabezado\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerDescription.h">
+      <Filter>Archivos de encabezado\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="AllHeadersCommon.h">
+      <Filter>Archivos de encabezado\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshBasic.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SQL.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsDevice.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayout.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Archivos de código fuente\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Archivos de código fuente\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTarget.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="DepthStencil.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="FastStrCat.cpp">
+      <Filter>Archivos de código fuente\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Archivos de código fuente\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceStates.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Archivos de código fuente\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Archivos de código fuente\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendDescription.cpp">
+      <Filter>Archivos de código fuente\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="DepthStencilDescription.cpp">
+      <Filter>Archivos de código fuente\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterizerDescription.cpp">
+      <Filter>Archivos de código fuente\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerDescription.cpp">
+      <Filter>Archivos de código fuente\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshBasic.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="SQL.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="app.ico">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Archivos de recursos</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

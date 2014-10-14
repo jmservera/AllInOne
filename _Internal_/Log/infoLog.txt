@@ -1,0 +1,50 @@
+Creating Factory1
+Trying driver D3D_DRIVER_TYPE_HARDWARE for D3D11_SDK_VERSION using D3D11CreateDevice
+Driver D3D_DRIVER_TYPE_HARDWARE created.
+_Shader::CompileFromFileC:\temp\AllInOne\_Internal_\genericShader.txt
+Created a new Layout:
+float4 VS( float4 Pos0 : POSITION0,float4 color0 : COLOR0,float3 normal0 : NORMAL0,float3 tangent0 : TANGENT0,float2 texCoord0 : TEXCOORD0 ) : SV_POSITION
+ { return Pos0; };
+_Shader::CompileFromFileC:\temp\AllInOne\_Internal_\PositionColor.txt
+Created a new Layout:
+float4 VS( float4 Pos0 : POSITION0 ) : SV_POSITION
+ { return Pos0; };
+_Shader::CompileFromFileC:\temp\AllInOne\_Internal_\RectangleTextured.txt
+Created a new Layout:
+float4 VS( float4 Pos0 : POSITION0,float3 normal0 : NORMAL0,float2 texCoord0 : TEXCOORD0 ) : SV_POSITION
+ { return Pos0; };
+GraphicsDevice::CreateDX9SharedRenderTarget
+_RenderTarget::OnCreate
+_RenderTarget::OnCreate
+Loading:C:\temp\AllInOne\Textures\stone.jpg
+GraphicsDevice::CreateDX9SharedRenderTarget
+_RenderTarget::OnCreate
+_RenderTarget::OnCreate
+Loading:C:\temp\AllInOne\Textures\earth.bmp
+Loading:C:\temp\AllInOne\_Internal_\Graphics\1.jpg
+Loading:C:\temp\AllInOne\Textures\bump_NM_height.dds
+Loading:C:\temp\AllInOne\_Internal_\Graphics\2.jpg
+Loading:C:\temp\AllInOne\_Internal_\Graphics\3.jpg
+Loading:C:\temp\AllInOne\_Internal_\Graphics\4.jpg
+Loading:C:\temp\AllInOne\_Internal_\Graphics\5.jpg
+Loading:C:\temp\AllInOne\_Internal_\Graphics\6.jpg
+_RenderTarget::Destroy
+GraphicsDevice::CreateDX9SharedRenderTarget
+_RenderTarget::OnCreate
+_RenderTarget::Destroy
+_RenderTarget::OnCreate
+_RenderTarget::Destroy
+GraphicsDevice::CreateDX9SharedRenderTarget
+_RenderTarget::OnCreate
+_RenderTarget::Destroy
+_RenderTarget::OnCreate
+GraphicsDevice::SetDeviceState. Created a new RasterizerState
+GraphicsDevice::SetDeviceState. Created a new DepthStencilState
+Created a new Layout:
+float4 VS( float4 Pos0 : POSITION0,float3 normal0 : NORMAL0,float2 texCoord0 : TEXCOORD0 ) : SV_POSITION
+ { return Pos0; };
+GraphicsDevice::SetDeviceState. Created a new RasterizerState
+GraphicsDevice::SetDeviceState. Created a new DepthStencilState
+Created a new Layout:
+float4 VS( float4 Pos0 : POSITION0,float4 color0 : COLOR0,float3 normal0 : NORMAL0,float3 tangent0 : TANGENT0,float2 texCoord0 : TEXCOORD0 ) : SV_POSITION
+ { return Pos0; };

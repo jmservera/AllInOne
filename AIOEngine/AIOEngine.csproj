@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{143EFF55-EC0C-4569-9F3A-62F2C006DD8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AIOEngine</RootNamespace>
+    <AssemblyName>AIOEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Graphics\Math\BoundingBox.cs" />
+    <Compile Include="Graphics\Math\BoundingSphere.cs" />
+    <Compile Include="Graphics\Math\Frustum.cs" />
+    <Compile Include="Graphics\Math\GeometryTools.cs" />
+    <Compile Include="Graphics\Math\GeometryFactory.cs" />
+    <Compile Include="Graphics\Scene\MeshMultiMaterial.cs" />
+    <Compile Include="Graphics\Scene\MeshBasic.cs" />
+    <Compile Include="Graphics\Scene\IRenderable.cs" />
+    <None Include="Graphics\Scene\Node\Node - Copia.cs" />
+    <Compile Include="Graphics\Scene\Node\Node.cs" />
+    <Compile Include="Graphics\Scene\Scene.cs" />
+    <Compile Include="Graphics\Scene\Mesh.cs" />
+    <Compile Include="Graphics\Scene\Sprite.cs" />
+    <Compile Include="Graphics\Scene\Sprites.cs" />
+    <Compile Include="Graphics\Texture\Texture.cs" />
+    <Compile Include="Graphics\Texture\Texture2D.cs" />
+    <Compile Include="Graphics\Texture\Textures.cs" />
+    <Compile Include="Graphics\Video\DepthStencil.cs" />
+    <Compile Include="Graphics\Video\DepthStencils.cs" />
+    <Compile Include="Graphics\Video\RenderTarget.cs" />
+    <Compile Include="Graphics\Video\RenderViews.cs" />
+    <Compile Include="Graphics\Video\RenderTargets.cs" />
+    <Compile Include="Graphics\Video\RenderView.cs" />
+    <Compile Include="Graphics\Video\ViewPort.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Graphics\Scene\Node\RootNode.cs" />
+    <Compile Include="Graphics\VisualEngine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GraphicsEngine\GraphicsEngine.vcxproj">
+      <Project>{4e062eb7-90b1-49bc-9682-432c7b2be13d}</Project>
+      <Name>GraphicsEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaterialEngine\MaterialEngine.csproj">
+      <Project>{b01c8161-5188-4c07-a99e-16273d8de758}</Project>
+      <Name>MaterialEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathEngine\MathEngine.csproj">
+      <Project>{baa4c2c5-37fa-4f13-83c9-dd57c2d8963a}</Project>
+      <Name>MathEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

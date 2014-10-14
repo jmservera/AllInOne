@@ -1,0 +1,46 @@
+// http://www.catalinzima.com/2012/12/a-word-on-matrices/
+
+// We want to use the same convention as OpenGL
+#pragma pack_matrix( column_major )
+
+cbuffer cbChangesEveryFrame : register( b0 )
+{
+    matrix World;
+	matrix View;
+	matrix Projection;
+    float4 DiffuseColor;
+};
+
+struct VS_OUTPUT
+{
+    float4 Pos : SV_POSITION;
+};
+
+//--------------------------------------------------------------------------------------
+// Vertex Shader
+//--------------------------------------------------------------------------------------
+VS_OUTPUT VS(float3 Pos0 : POSITION0)
+{
+   VS_OUTPUT output = (VS_OUTPUT)0;
+	
+	float4 pos=float4(Pos0,1);
+	
+    output.Pos = mul( World,pos  );
+	
+    output.Pos = mul( View,output.Pos  );
+    output.Pos = mul( Projection,output.Pos  );
+		
+    return output;
+}
+
+
+//--------------------------------------------------------------------------------------
+// Pixel Shader
+//--------------------------------------------------------------------------------------
+float4 PS( VS_OUTPUT input) : SV_Target
+{
+	// If alpha is==0 then this pixel must not be drawn
+	if(DiffuseColor.a==0) discard;
+
+	return DiffuseColor;
+}

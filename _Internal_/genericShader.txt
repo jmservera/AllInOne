@@ -1,0 +1,289 @@
+// http://www.catalinzima.com/2012/12/a-word-on-matrices/
+
+// We want to use the same convention as OpenGL
+#pragma pack_matrix( column_major )
+
+Texture2D txDiffuse : register( t0 );
+SamplerState samDiffuse : register( s0 );
+Texture2D txNormal : register( t1 );
+SamplerState samNormal : register( s1 );
+
+#define LIGHT_OMNI 0
+#define LIGHT_SPOT 1
+
+#define ATTENUATION_NONE 0
+#define ATTENUATION_INVERSE 1
+#define ATTENUATION_DUALRADIUS 2
+#define ATTENUATION_INVERSESQUARE 3
+
+struct _Light
+{
+	// You MUST NOT update this vars. Use the methods instead.
+	float4 a;
+	float4 b;
+	float4 c;
+	float4 d;
+	
+	// Returns World Space light's position
+	float3 GetPosition()
+	{
+		return float3(a.x,a.y,a.z);
+	}
+	
+	// Returns light's Color
+	float4 GetColor()
+	{
+		return b;
+	}
+	
+	// Returns light's range
+	float GetRange()
+	{
+		return a.w;
+	}
+	
+	// Returns 1.0f / light's range
+	float GetRcpRange()
+	{
+		return c.x;
+	}
+	
+	// Returns the attenuation mode used for this light
+	float GetAttenuationMode()
+	{
+		return c.y;
+	}
+	// Returns the AttenuationStart
+	float GetAttenuationStart()
+	{
+		return c.z;
+	}
+	
+	float GetFallOff()
+	{
+		return c.w;
+	}
+	float GetHotSpot()
+	{
+		return d.w;
+	}
+
+	float3 GetDirection()
+	{
+		return float3(d.x,d.y,d.z);
+	}
+	
+	// Returns the Light Type ( Omni, Spot)
+	float GetType()
+	{
+		if(c.w==-99) return LIGHT_OMNI;
+		
+		return LIGHT_SPOT;
+	}
+};
+
+struct _Camera
+{
+	// You MUST NOT update this vars. Use the methods instead.
+	float4 a;
+	float4 b;
+	float4 c;
+	float4 d;
+	
+	// Returns World Space camera position
+	float3 GetPosition()
+	{
+		return float3(a.x,a.y,a.z);
+	}
+};
+
+struct _Material
+{
+	// You MUST NOT update this vars. Use the methods instead.
+	float4 a;	// Diffuse Color
+	float4 b;	// Specular Power(x) ; SpecularColor(yzw)
+	float4 c;	// Specular Enabled
+	float4 d;
+	
+	float4 GetDiffuseColor()
+	{
+		return a;
+	}
+	
+	// Returns World Space camera position
+	float GetSpecularPower()
+	{
+		return b.x;
+	}
+
+	// Returns the specular fixed color
+	float3 GetSpecularColor()
+	{
+		return float3(b.y,b.z,b.w);
+	}
+	
+	bool  GetSpecularEnabled()
+	{
+		return c.x==1;
+	}
+	
+};
+
+cbuffer cbChangesEveryFrame : register( b0 )
+{
+    matrix World;
+	matrix View;
+	matrix Projection;
+	_Material material;
+	_Light light;
+	_Camera camera;
+};
+
+// Transforms a vector from range [0,1] to [-1,1]
+float3 Expand(float3 v)
+{
+	return (v * 2.0f - 1.0f);
+}
+
+float GetLightAttenuation(_Light light,float3 lightPos,float3 lightDir_WorldSpace_Normalized,float lightLength)
+{
+	float attenuation=1.0f;
+	
+	float3 lightDir=lightDir_WorldSpace_Normalized;
+
+	float attenuationMode=light.GetAttenuationMode();
+	
+	// rcpRange = 1.0f / Range
+	float rcpRange=light.GetRcpRange();
+	
+	if(attenuationMode==ATTENUATION_NONE)
+	{
+		if(lightLength>light.GetRange()) attenuation=0;
+	}
+	else
+	if(attenuationMode==ATTENUATION_INVERSE)
+	{
+		attenuation -= saturate(lightLength*rcpRange);		
+	}
+	else
+	if(attenuationMode==ATTENUATION_INVERSESQUARE)
+	{
+		attenuation -= saturate(lightLength*rcpRange);
+		
+		attenuation*=attenuation;
+	}
+	else
+	if(attenuationMode==ATTENUATION_DUALRADIUS)
+	{
+		attenuation -= smoothstep(light.GetAttenuationStart(),light.GetRange(),lightLength);
+	}
+	
+	if(light.GetType() == LIGHT_SPOT)
+	{
+		// smoothstep: Returns 0 if x is less than min; 1 if x is greater than max; otherwise, a value between 0 and 1 if x is in the range [min, max].
+		float spot=1-smoothstep(light.GetHotSpot(), light.GetFallOff(), dot(-lightDir, light.GetDirection()));
+		
+		attenuation *= spot;
+		
+	}
+
+	return attenuation;
+};
+
+// Computes the diffuse component between the VertexNormal and the LightDir ( from point to light position)
+float ComputeDiffuse(float3 Normal, float3 LightDir)
+{
+	return max(0,dot(Normal, LightDir));
+}
+
+// Función que calcula la contrubución de la componente specular
+
+float ComputeSpecular(float3 Reflection, float3 View, float specularPower)
+{
+	return pow(saturate(dot(Reflection, View)), specularPower);
+}
+
+struct VS_OUTPUT
+{
+    float4 Pos : SV_POSITION;
+	float4 Color0: COLOR0;
+    float2 TexDiffuse : TEXCOORD0;
+	float3 Position_WorldSpace: TEXCOORD1;
+	float3 Normal_WorldSpace: TEXCOORD2;
+	float3 View_WorldSpace: TEXCOORD3;
+};
+
+//--------------------------------------------------------------------------------------
+// Vertex Shader
+//--------------------------------------------------------------------------------------
+VS_OUTPUT VS(float3 Pos0 : POSITION0,float4 VertexColor:COLOR0,float3 Normal:NORMAL,float3 Tanget:TANGENT,float2 TexCoord:TEXCOORD0)
+{
+   VS_OUTPUT output = (VS_OUTPUT)0;
+	
+	//matrix WorldViewProjection = mul(mul(World, View), Projection);
+	float4 pos=float4(Pos0,1);
+	
+    output.Pos = mul( World,pos  );
+	
+	output.Position_WorldSpace =output.Pos.xyz;
+	
+    output.Pos = mul( View,output.Pos  );
+    output.Pos = mul( Projection,output.Pos  );
+	
+	output.Normal_WorldSpace=mul( (float3x3)World,Normal );
+		
+	output.TexDiffuse=TexCoord;
+	
+	output.Color0=material.GetDiffuseColor()*VertexColor;
+	
+	output.View_WorldSpace	= camera.GetPosition() - output.Position_WorldSpace;
+	
+    return output;
+}
+
+
+//--------------------------------------------------------------------------------------
+// Pixel Shader
+//--------------------------------------------------------------------------------------
+float4 PS( VS_OUTPUT input) : SV_Target
+{
+	float3 normal_WorldSpace=normalize(input.Normal_WorldSpace);
+	float3 vertexPosition_WorldSpace=input.Position_WorldSpace;
+	float4 vertexColor=input.Color0;
+	float2 textureDiffuseCoord=input.TexDiffuse;
+	float3 view_WorldSpace=input.View_WorldSpace;
+	
+	float4 diffuseColor=vertexColor*txDiffuse.Sample( samDiffuse, textureDiffuseCoord );
+	
+	// If alpha is==0 then this pixel must not be drawn
+	if(diffuseColor.a==0) discard;
+
+	float3 lightPos_WorldSpace=light.GetPosition();
+
+	float3 lightDir_WorldSpace_Normalized=lightPos_WorldSpace-vertexPosition_WorldSpace;
+
+	float lightLength=length(lightDir_WorldSpace_Normalized);
+	
+	lightDir_WorldSpace_Normalized=normalize(lightDir_WorldSpace_Normalized);
+	
+	float attenuation=GetLightAttenuation(light,lightPos_WorldSpace,lightDir_WorldSpace_Normalized,lightLength);
+	
+	float nDotL=ComputeDiffuse(normal_WorldSpace,lightDir_WorldSpace_Normalized);
+	
+	float4 finalColor=diffuseColor*nDotL;
+	
+	if(material.GetSpecularEnabled())
+	{
+		float3 reflect_WorldSpace = reflect(-view_WorldSpace, normal_WorldSpace);
+		
+		float4 specColor = float4(ComputeSpecular(reflect_WorldSpace,lightDir_WorldSpace_Normalized, material.GetSpecularPower()) * material.GetSpecularColor(),1);
+		
+		finalColor+=specColor;
+	}
+	
+	finalColor*= light.GetColor() * attenuation;
+	
+	finalColor.a=1;
+
+	return finalColor;
+}

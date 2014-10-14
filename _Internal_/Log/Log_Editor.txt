@@ -1,0 +1,46 @@
+﻿Created at 14/10/2014 17:14:12
+14/10/2014 17:14:12		Information		Editor				Creating the device
+14/10/2014 17:14:13		Information		Editor				Creating the Textures
+14/10/2014 17:14:14		Information		RenderTarget				Create SpriteControl.DX9BackBuffer (C++ _RenderTarget based)
+14/10/2014 17:14:14		Information		Texture				Create SpriteControl.DX9BackBuffer (C++ _Texture2D based)
+14/10/2014 17:14:14		Information		RenderView				Created SpriteControl.DX9BackBuffer
+14/10/2014 17:14:14		Information		RenderTarget				Create SpriteControl 640x480 RGBA
+14/10/2014 17:14:14		Information		Texture				Creating SpriteControl
+14/10/2014 17:14:14		Information		RenderView				Created SpriteControl
+14/10/2014 17:14:14		Information		DepthStencil				Create MainDepthStencil 640x480
+14/10/2014 17:14:15		Information		Texture				Creating stone
+14/10/2014 17:14:15		Information		RenderTarget				Create Control.DX9BackBuffer (C++ _RenderTarget based)
+14/10/2014 17:14:15		Information		Texture				Create Control.DX9BackBuffer (C++ _Texture2D based)
+14/10/2014 17:14:15		Information		RenderView				Created Control.DX9BackBuffer
+14/10/2014 17:14:15		Information		RenderTarget				Create Control 640x480 RGBA
+14/10/2014 17:14:15		Information		Texture				Creating Control
+14/10/2014 17:14:16		Information		RenderView				Created Control
+14/10/2014 17:14:16		Information		DepthStencil				Create MainDepthStencil 640x480
+14/10/2014 17:14:16		Information		Texture				Creating earth
+14/10/2014 17:14:16		Information		Texture				Creating 1
+14/10/2014 17:14:17		Information		Texture				Creating bump_NM_height
+14/10/2014 17:14:17		Information		Texture				Creating 2
+14/10/2014 17:14:17		Information		Texture				Creating 3
+14/10/2014 17:14:18		Information		Texture				Creating 4
+14/10/2014 17:14:18		Information		Texture				Creating 5
+14/10/2014 17:14:18		Information		Texture				Creating 6
+14/10/2014 17:14:18		Information		RenderTarget				Resize Control.DX9BackBuffer: 640x480
+14/10/2014 17:14:18		Information		Texture				Destroy Control.DX9BackBuffer
+14/10/2014 17:14:19		Information		RenderTarget				Recreating Control.DX9BackBuffer
+14/10/2014 17:14:19		Information		RenderTarget				Resize Control: 640x480
+14/10/2014 17:14:19		Information		Texture				Destroy Control
+14/10/2014 17:14:19		Information		Texture				Creating Control
+14/10/2014 17:14:19		Information		DepthStencil				Destroy640x480
+14/10/2014 17:14:19		Information		DepthStencil				Resize MainDepthStencil: 230x172
+14/10/2014 17:14:20		Information		RenderTarget				Resize SpriteControl.DX9BackBuffer: 640x480
+14/10/2014 17:14:20		Information		Texture				Destroy SpriteControl.DX9BackBuffer
+14/10/2014 17:14:20		Information		RenderTarget				Recreating SpriteControl.DX9BackBuffer
+14/10/2014 17:14:20		Information		RenderTarget				Resize SpriteControl: 640x480
+14/10/2014 17:14:20		Information		Texture				Destroy SpriteControl
+14/10/2014 17:14:20		Information		Texture				Creating SpriteControl
+14/10/2014 17:14:21		Information		DepthStencil				Destroy640x480
+14/10/2014 17:14:21		Information		DepthStencil				Resize MainDepthStencil: 230x172
+14/10/2014 17:14:21		Information		DepthStencil				Destroy230x172
+14/10/2014 17:14:21		Information		DepthStencil				Resize MainDepthStencil: 230x172
+14/10/2014 17:14:22		Information		DepthStencil				Destroy230x172
+14/10/2014 17:14:22		Information		DepthStencil				Resize MainDepthStencil: 230x172
